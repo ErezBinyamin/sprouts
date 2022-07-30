@@ -1,7 +1,4 @@
 #!/usr/bin/python3
-board = []
-moves = []
-
 class Sprouts():
   def __init__(self, N):
     self.board = [0] * N
@@ -12,7 +9,14 @@ class Sprouts():
     Function: __str__: @Override
     Override __str__ to print board state when called on instance of Sprouts object
     """
-    s = f"Board:\t{str(self.board)}\nMoves:\t{str(self.moves)}"
+    s  = "Board:\n"
+    nodes = ""
+    conns = ""
+    for i in range(len(self.board)):
+      nodes += f"\t {i+1} "
+      conns += f"\t[{self.board[i]}]"
+    s += f"{nodes}\n{conns}\n"
+    s += f"Moves:\t{self.moves}\n"
     return s
 
   def __moveIsValid(self, move):
@@ -51,7 +55,8 @@ class Sprouts():
     return isValid
 
 if __name__ == "__main__":
-  s = Sprouts(2)
+  s = Sprouts(4)
   print(s)
   while s.move([1,2]):
+    print("=================")
     print(s)
